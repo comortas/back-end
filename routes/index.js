@@ -5,6 +5,8 @@ const initAppStatusRoute = require('./applicationStatus');
 const initFileRoute = require('./file');
 //const initCannedMessageRoute = require('./cannedMessage');
 const initGenerateShortUrl = require('./urlShorten/generateShortUrl');
+const initCommunity = require('./community');
+
 
 const internals = module.exports = async (mdCommonModule) => {
 
@@ -12,6 +14,7 @@ const internals = module.exports = async (mdCommonModule) => {
   //const cannedMessageRoute = await initCannedMessageRoute();  
   const generateShortUrlRoute = await initGenerateShortUrl();
   const appStatusRoute = await initAppStatusRoute();
+  const communityRoute = await initCommunity();
 
 
   const router = new express.Router();
@@ -30,8 +33,9 @@ const internals = module.exports = async (mdCommonModule) => {
   // });
 
   /* Application ID verification - Middleware*/
-  router.use(require("../middlewares/auth/clientVerificationHandler"));
+  //router.use(require("../middlewares/auth/clientVerificationHandler"));
   router.use(appStatusRoute);
+  router.use(communityRoute);
   router.use(fileRoute);
   //router.use(cannedMessageRoute);
   router.use(generateShortUrlRoute);

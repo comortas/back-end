@@ -19,7 +19,7 @@ const initApp = async () => {
     // appInsights.setup(await utility.GetSecret('INSTRUMENTATION-KEY'));
     // appInsights.start();
     //const mongoDBUrl = await utility.GetSecret('MONGODB-URI');
-     const mongoDBUrl = 'mongodb://telehealth-dev-cosmos-usw2:LJMR99YxJpGvZHNsnzJwLphFH6jubzBswOVpCA1p28PBl4g1zqSTMmPocMhad5SHUsyCeeLG8uij5nYtZSmv3A==@telehealth-dev-cosmos-usw2.mongo.cosmos.azure.com:10255/TeleHealth_Dev?authSource=TeleHealth_Dev&ssl=true';
+     const mongoDBUrl = 'mongodb://cdxdpadbapimkt:Wx34HxlJCg2mMSHafw4qWxq33aBRj0hjzbI3860DljyIIT3m5ODo4BhzVQvW1UiXMiXGPDhYgKcN2FbNSCsSxQ==@cdxdpadbapimkt.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@cdxdpadbapimkt@';
     app.set('port', port);
     app.enable('trust proxy');
 
@@ -32,8 +32,8 @@ const initApp = async () => {
     /*-----------------------------------------------------
     --Establish connection database and configure GridFS --
     -------------------------------------------------------*/
-    //const scMongoDBConnector = new SCMongoDBConnector({ url : mongoDBUrl });
-    //await scMongoDBConnector.connect();
+    const scMongoDBConnector = new SCMongoDBConnector();
+    await scMongoDBConnector.connect(mongoDBUrl);
 
     /*-----------------------------------------------------------------
     ------------- set in-memory cache and initialize socket -----------

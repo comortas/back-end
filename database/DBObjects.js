@@ -1,16 +1,9 @@
 var models = {
     ApplicationSetting : null,
     CannedMessage : null,
-    Consent : null,
-    ConsentAcknowledgement : null,
-    EmailTemplate : null,
+    Community : null,
     'images.files' : null,
     //File : null,
-    Location : null,
-    MedicalDiagnosis : null,
-    Organization : null,
-    CustomEmailTemplate : null,
-    EmailTemplatePlaceHolder : null,
     UrlShortens : null
 };
 

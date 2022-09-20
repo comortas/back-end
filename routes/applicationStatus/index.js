@@ -6,7 +6,7 @@ const router = new express();
 
 module.exports = async () => {
 
-    router.get('/', async (req, res, next) => {
+    router.get('/appstatus', async (req, res, next) => {
         try {
 
             return res.json("Success");

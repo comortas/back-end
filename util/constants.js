@@ -29,5 +29,12 @@ module.exports = {
     MDToken : { 
         Name : 'MD_Telehealth_Token',
         Expiration : 86400 // 24 hours
+    },
+    HTTP_STATUS_CODE: {
+        SUCCESS: 200,
+        BAD_REQUEST: 400,
+        UNAUTHORIZED: 401,
+        FORBIDDEN: 403,
+        INTERNAL_SERVER_ERROR: 500
     }
 };

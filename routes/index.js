@@ -6,7 +6,6 @@ const initFileRoute = require('./file');
 //const initCannedMessageRoute = require('./cannedMessage');
 const initGenerateShortUrl = require('./urlShorten/generateShortUrl');
 
-
 const internals = module.exports = async (mdCommonModule) => {
 
   const fileRoute = await initFileRoute();
@@ -19,9 +18,9 @@ const internals = module.exports = async (mdCommonModule) => {
 
   router.get('/ping', async (req, res) => res.json({ message: 'pong' }));
 
-  router.use(appStatusRoute);
+
   /* Application ID verification - Middleware*/
-  router.use(require("../middlewares/auth/clientVerificationHandler"));
+  //router.use(require("../middlewares/auth/clientVerificationHandler"));
 
   //const middlewares = mdCommonModule.getMiddlewares();
   // const authHandler = new middlewares.AuthHandler({
@@ -30,8 +29,9 @@ const internals = module.exports = async (mdCommonModule) => {
   //     audience: 'MD-Common-Service-API'
   // });
 
-  //router.use(await authHandler.verifyToken());
-
+  /* Application ID verification - Middleware*/
+  router.use(require("../middlewares/auth/clientVerificationHandler"));
+  router.use(appStatusRoute);
   router.use(fileRoute);
   //router.use(cannedMessageRoute);
   router.use(generateShortUrlRoute);

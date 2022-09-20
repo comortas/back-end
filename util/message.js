@@ -7,7 +7,9 @@ module.exports = {
         FirstNameLastNameEmpty : "Unable to process request when first name and last name is empty",
         DateTimeEmpty: "Unable to process request when date and time is empty",
         InvalidURL: "Invalid URL",
-        MissingInput: "Missing Input"
+        MissingInput: "Missing Input",
+        MissingToken : "Missing Token",
+        InvalidToken : "Invalid Token"
     },
     SuccessMessage: {
         CannedMessageCreatedSuccessfully : "Canned message created successfully",

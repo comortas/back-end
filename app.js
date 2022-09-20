@@ -10,7 +10,7 @@ var server = require('http').createServer(app);
 const routes = require('./routes');
 const urlShortenRoute = require('./routes/urlShorten');
 const port = process.env.PORT || 5050;
-const SCMongoDBConnector = require('./database/SCMongoDBConnector');
+const MongoDBConnector = require('./database/MongoDBConnector');
 const utility = require('./util/utility');
 const logger = require('./util/logger');
 
@@ -32,8 +32,8 @@ const initApp = async () => {
     /*-----------------------------------------------------
     --Establish connection database and configure GridFS --
     -------------------------------------------------------*/
-    const scMongoDBConnector = new SCMongoDBConnector();
-    await scMongoDBConnector.connect(mongoDBUrl);
+    const mongoDBConnector = new MongoDBConnector();
+    await mongoDBConnector.connect(mongoDBUrl);
 
     /*-----------------------------------------------------------------
     ------------- set in-memory cache and initialize socket -----------

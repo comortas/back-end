@@ -1,23 +1,62 @@
 const communityDao = require('../database/dao/communityDao');
-const constants = require('../util/constants');
-const communitySchema = require('../database/models/Community.model')
+const messages = require('../util/message');
 
 const createNewCommunity = async (communityObj) => {
     try {
-        var newCommunity = new communitySchema({
+        var newCommunity = {
             name: communityObj.name,
             description: communityObj.description,
             createdBy: communityObj.createdBy,
-            categories: communityObj.categories,
+            category: communityObj.category,
             location: communityObj.location,
             latitude: communityObj.latitude,
             longitude: communityObj.longitude
-        });
+        };
 
-        //await communityDao.createCommunity(newCommunity);
-        await newCommunity.save();
+        var community = await communityDao.createCommunity(newCommunity);
         return {
-            message: messages(languageCode).SuccessMessage.CannedMessageCreatedSuccessfully
+            message: messages.SuccessMessage.CreatedSuccessfully,
+            community: community
+        }
+    } catch (err) {
+        throw err;
+    }
+}
+
+const updateCommunity = async (communityId, newCommunity) => {
+    try {
+        var updateResult = await communityDao.updateCommunity(communityId, newCommunity);
+        if (updateResult.modifiedCount > 0) {
+            return {
+                message: messages.SuccessMessage.UpdatedSuccessfully
+            }
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getCommunityById = async (id) => {
+    try {
+        return await communityDao.getCommunityById(id);
+    } catch (err) {
+        throw err;
+    }
+}
+
+const getCommunityList = async () => {
+    try {
+        return await communityDao.getCommunityList();
+    } catch (err) {
+        throw err;
+    }
+}
+
+const deleteCommunityById = async (id) => {
+    try {
+        await communityDao.deleteCommunityById(id);
+        return {
+            message: messages.SuccessMessage.DeletedSuccessfully
         }
     } catch (err) {
         throw err;
@@ -26,5 +65,9 @@ const createNewCommunity = async (communityObj) => {
 
 
 module.exports = {
-    createNewCommunity
+    createNewCommunity,
+    updateCommunity,
+    getCommunityList,
+    getCommunityById,
+    deleteCommunityById
 }

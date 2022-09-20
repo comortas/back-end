@@ -14,10 +14,10 @@ const communitySchema = new Schema({
         required: true,
         description: 'Brief about the Community'
     },
-    categories: {
+    category: {
         type: String,
         required: true,
-        description: 'Categories of the Community'
+        description: 'category of the Community'
     },
     location: {
         type: String,
@@ -44,8 +44,4 @@ const communitySchema = new Schema({
         timestamps: true
     });
 
-const model = mongoose.model("Community", communitySchema);
-
-module.exports = model;
-
-//module.exports = { name : 'Community', schema : communitySchema };
+module.exports = { name : 'Community', schema : communitySchema };

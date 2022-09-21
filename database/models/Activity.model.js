@@ -3,6 +3,20 @@ const Promise = require('bluebird');
 const { Schema } = mongoose;
 mongoose.Promise = Promise;
 
+const volunteersSchema = new Schema({
+    volunteerId: {
+        type: Schema.Types.ObjectId,
+        ref : 'User',
+        required: true,
+        description: 'User id of the volunteers'
+    },
+    resquestStatus: {
+        type: String,
+        required: true,
+        description: 'Request Approved or Denied'
+    }
+});
+
 const activitySchema = new Schema({
     type: {
         type: String,
@@ -61,12 +75,7 @@ const activitySchema = new Schema({
         enum: ['open','closed'],
         description: 'status of the activity'
     },
-    approvedVolunteers : [{
-        type: Schema.Types.ObjectId,
-        ref : 'User',
-        required: true,
-        description: 'User id of the volunteers'
-    }],
+    volunteers : [volunteersSchema],
     createdBy: {
         type: String,
         required: true,

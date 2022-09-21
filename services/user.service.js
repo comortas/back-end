@@ -5,7 +5,7 @@ const logger = require('../util/logger');
 
 const createNewUser = async (userObj) => {
     try {
-        //check email already exsist
+        //check email already exist
         var userDetails = await userDao.getUserByEmail(userObj.email);
         logger.info(JSON.stringify(userDetails));
         if (userDetails) {

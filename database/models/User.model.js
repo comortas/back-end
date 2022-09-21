@@ -16,14 +16,19 @@ const userSchema = new Schema({
     },
     phone: {
         type: String,
-        required: true,
+        required: false,
         description: 'phone of the user'
     },
     wallet: {
         type: Number,
-        required: true,
+        required: false,
         description: 'credit hours of the user'
     },
+    profilePicture : {
+        type: String,
+        required: false,
+        description: 'User Profile picture'
+    }
 },
     {
         timestamps: true

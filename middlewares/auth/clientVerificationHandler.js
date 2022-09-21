@@ -23,7 +23,7 @@ module.exports = function (req, res, next){
                 });
             }
             else {
-                logger.info(JSON.stringify(decoded));
+                logger.debug(JSON.stringify(decoded));
                 req.decoded = decoded;
                 next();
             }

@@ -38,10 +38,22 @@ const communitySchema = new Schema({
         type: String,
         required: true,
         description: 'User who create the Community'
+    },
+    members: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+        description: 'User id of the members'
+    }],
+    admin: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        description: 'Admin of the Community'
     }
 },
     {
         timestamps: true
     });
 
-module.exports = { name : 'Community', schema : communitySchema };
+module.exports = { name: 'Community', schema: communitySchema };

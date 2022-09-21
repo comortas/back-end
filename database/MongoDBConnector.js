@@ -7,10 +7,10 @@ class MongoDBConnector {
     async connect(url) {
         mongoose.connect(url)
         .then((connection)=>{
-            console.log(`successfully connected`);
             schemas.map((schema) =>{
                 DBObjects.models[schema.name] = connection.model(schema.name, schema.schema);
              });
+             console.log(`successfully connected`);
             }).catch((e)=>{
             console.log(`not connected`);
             })

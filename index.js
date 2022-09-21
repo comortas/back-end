@@ -8,11 +8,11 @@ const cors = require('cors');
 const app = express();
 var server = require('http').createServer(app);
 const routes = require('./routes');
-const urlShortenRoute = require('./routes/urlShorten');
 const port = process.env.PORT || 5050;
 const MongoDBConnector = require('./database/MongoDBConnector');
 const utility = require('./util/utility');
 const logger = require('./util/logger');
+const initSocket = require('./middlewares/sockets');
 
 const initApp = async () => {
   try {
@@ -41,22 +41,22 @@ const initApp = async () => {
     //const cache = await redisCache.initCache({});
 
     //await MDSessionHandler.init(redisCache);
-    
-    // const io = await initSocket(cache);
-    // io.attach(server, {
-    //   origins: '*:*',
-    //   path: '/api/karmatheory/websocket',
-    //   transports: ['websocket']
-    //   // handlePreflightRequest: (req, res) => {
-    //   //   const headers = {
-    //   //     "Access-Control-Allow-Headers": "md-app-id",
-    //   //     "Access-Control-Allow-Origin": req.headers.origin, //or the specific origin you want to give access to,
-    //   //     "Access-Control-Allow-Credentials": true
-    //   //   };
-    //   //   res.writeHead(200, headers);
-    //   //   res.end();
-    //   // }
-    // });
+
+    const io = await initSocket();
+    io.attach(server, {
+      origins: '*:*',
+      path: '/karmatheory/websocket',
+      transports: ['websocket']
+      // handlePreflightRequest: (req, res) => {
+      //   const headers = {
+      //     "Access-Control-Allow-Headers": "md-app-id",
+      //     "Access-Control-Allow-Origin": req.headers.origin, //or the specific origin you want to give access to,
+      //     "Access-Control-Allow-Credentials": true
+      //   };
+      //   res.writeHead(200, headers);
+      //   res.end();
+      // }
+    });
 
     /*------------------------------------------
     ------------- set up routes ---------------
@@ -65,12 +65,8 @@ const initApp = async () => {
     app.get("/", (req, res) => {
       res.send('Welcome to Karma Theory API');
     });
-    
-    //const serviceBusSender = await initServiceBusClient();
 
-    app.use('/url', await urlShortenRoute());
- 
-    app.use('/api/karmatheory', await routes());
+    app.use('/api/karmatheory', await routes(io));
 
     /*------------------------------------------
     ------------- Error handler ---------------
@@ -92,7 +88,6 @@ const initApp = async () => {
     logger.error("Failed to initialize ", err);
     process.exit(1);
   }
-
 };
 
 initApp();

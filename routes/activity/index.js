@@ -45,6 +45,15 @@ module.exports = async () => {
             next(err);
         }
     });
+
+
+    router.get('/activity/:id/optin', async (req, res, next) => {
+        try {
+            return res.json(await activityService.getActivityList());
+        } catch (err) {
+            next(err);
+        }
+    });
   
 
     return router;

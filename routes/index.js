@@ -1,17 +1,15 @@
 'use strict';
 const express = require('express');
 const initFileRoute = require('./file');
-const initGenerateShortUrl = require('./urlShorten/generateShortUrl');
 const initCommunity = require('./community');
 const initActivity = require('./activity');
 const initUser = require('./user');
 
-const internals = module.exports = async (mdCommonModule) => {
+const internals = module.exports = async (io) => {
 
   const fileRoute = await initFileRoute();
-  const generateShortUrlRoute = await initGenerateShortUrl();
   const communityRoute = await initCommunity();
-  const activityRoute = await initActivity();
+  const activityRoute = await initActivity(io);
   const userRoute = await initUser();
 
   const router = new express.Router();
@@ -36,6 +34,5 @@ const internals = module.exports = async (mdCommonModule) => {
   router.use(communityRoute);
   router.use(activityRoute);
   router.use(fileRoute);
-  router.use(generateShortUrlRoute);
   return router;
 };

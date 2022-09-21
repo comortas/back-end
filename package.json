@@ -2,14 +2,13 @@
   "name": "karmatheory-be",
   "version": "1.0.0",
   "description": "Karma Theory backend API services",
-  "main": "./app.js",
+  "main": "index.js",
   "engines": {
     "node": "v16.17.0",
     "npm": "8.15.0"
   },
   "scripts": {
-    "start": "node .",
-    "test": "echo \"Error: no test specified\""
+    "start": "node index"
   },
   "author": "Abinaya Sekar",
   "license": "ISC",
@@ -22,7 +21,6 @@
     "base64-stream": "^1.0.0",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.7.2",
-    "chalk": "^4.1.2",
     "cors": "^2.8.5",
     "cryptr": "^6.0.3",
     "dateformat": "^5.0.3",
@@ -38,22 +36,16 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",
-    "mongodb": "^4.6.0",
     "mongoose": "^6.3.3",
     "mongoose-autopopulate": "^0.16.1",
     "mongoose-encryption": "^2.1.2",
     "mongoose-lean-virtuals": "^0.9.1",
     "multer": "^1.4.4",
     "querystring": "^0.2.1",
-    "redis": "^4.1.0",
     "shortid": "^2.2.16",
     "socket.io": "^4.5.1",
     "socket.io-redis": "^6.1.1",
     "twilio": "^3.77.1",
-    "uuid": "^8.3.2",
-    "valid-url": "^1.0.9",
-    "winston": "^3.7.2",
-    "winston-application-insights-transport": "0.0.1",
-    "winston-daily-rotate-file": "^4.6.1"
+    "uuid": "^8.3.2"
   }
 }

@@ -4,6 +4,7 @@ const initFileRoute = require('./file');
 const initGenerateShortUrl = require('./urlShorten/generateShortUrl');
 const initCommunity = require('./community');
 const initActivity = require('./activity');
+const initUser = require('./user');
 
 const internals = module.exports = async (mdCommonModule) => {
 
@@ -11,6 +12,7 @@ const internals = module.exports = async (mdCommonModule) => {
   const generateShortUrlRoute = await initGenerateShortUrl();
   const communityRoute = await initCommunity();
   const activityRoute = await initActivity();
+  const userRoute = await initUser();
 
   const router = new express.Router();
 
@@ -29,6 +31,7 @@ const internals = module.exports = async (mdCommonModule) => {
 
   /* Application ID verification - Middleware*/
   //router.use(require("../middlewares/auth/clientVerificationHandler"));
+  router.use(userRoute);
   router.use(communityRoute);
   router.use(activityRoute);
   router.use(fileRoute);

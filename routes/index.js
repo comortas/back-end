@@ -1,18 +1,16 @@
 'use strict';
 const express = require('express');
-
-const initAppStatusRoute = require('./applicationStatus');
 const initFileRoute = require('./file');
-//const initCannedMessageRoute = require('./cannedMessage');
 const initGenerateShortUrl = require('./urlShorten/generateShortUrl');
+const initCommunity = require('./community');
+const initActivity = require('./activity');
 
 const internals = module.exports = async (mdCommonModule) => {
 
   const fileRoute = await initFileRoute();
-  //const cannedMessageRoute = await initCannedMessageRoute();  
   const generateShortUrlRoute = await initGenerateShortUrl();
-  const appStatusRoute = await initAppStatusRoute();
-
+  const communityRoute = await initCommunity();
+  const activityRoute = await initActivity();
 
   const router = new express.Router();
 
@@ -30,10 +28,10 @@ const internals = module.exports = async (mdCommonModule) => {
   // });
 
   /* Application ID verification - Middleware*/
-  router.use(require("../middlewares/auth/clientVerificationHandler"));
-  router.use(appStatusRoute);
+  //router.use(require("../middlewares/auth/clientVerificationHandler"));
+  router.use(communityRoute);
+  router.use(activityRoute);
   router.use(fileRoute);
-  //router.use(cannedMessageRoute);
   router.use(generateShortUrlRoute);
   return router;
 };

@@ -11,7 +11,8 @@ var models = {
     Organization : null,
     CustomEmailTemplate : null,
     EmailTemplatePlaceHolder : null,
-    UrlShortens : null
+    UrlShortens : null,
+    users: null
 };
 
 var fileAccess = {

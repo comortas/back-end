@@ -9,7 +9,7 @@ const app = express();
 var server = require('http').createServer(app);
 const routes = require('./routes');
 const urlShortenRoute = require('./routes/urlShorten');
-const port = process.env.PORT || 5050;
+const port = process.env.PORT || 5000;
 const SCMongoDBConnector = require('./database/SCMongoDBConnector');
 const utility = require('./util/utility');
 const logger = require('./util/logger');
@@ -19,7 +19,7 @@ const initApp = async () => {
     // appInsights.setup(await utility.GetSecret('INSTRUMENTATION-KEY'));
     // appInsights.start();
     //const mongoDBUrl = await utility.GetSecret('MONGODB-URI');
-     const mongoDBUrl = 'mongodb://telehealth-dev-cosmos-usw2:LJMR99YxJpGvZHNsnzJwLphFH6jubzBswOVpCA1p28PBl4g1zqSTMmPocMhad5SHUsyCeeLG8uij5nYtZSmv3A==@telehealth-dev-cosmos-usw2.mongo.cosmos.azure.com:10255/TeleHealth_Dev?authSource=TeleHealth_Dev&ssl=true';
+    const mongoDBUrl = 'mongodb://telehealth-dev-cosmos-usw2:LJMR99YxJpGvZHNsnzJwLphFH6jubzBswOVpCA1p28PBl4g1zqSTMmPocMhad5SHUsyCeeLG8uij5nYtZSmv3A==@telehealth-dev-cosmos-usw2.mongo.cosmos.azure.com:10255/TeleHealth_Dev?authSource=TeleHealth_Dev&ssl=true';
     app.set('port', port);
     app.enable('trust proxy');
 

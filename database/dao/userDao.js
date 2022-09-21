@@ -47,9 +47,9 @@ const deleteuserById = async (id) => {
 }
 
 
-const getuserByEmail = async(email) => {
+const getUserByEmail = async(email) => {
     try{
-        return await models.User.find(email).exec();
+        return await models.User.findOne({email : email }).exec();
     }
     catch(error){
         throw error;
@@ -62,5 +62,5 @@ module.exports = {
     getuserList,
     getuserById,
     deleteuserById,
-    getuserByEmail
+    getUserByEmail
 };

@@ -1,26 +1,39 @@
 const userDao = require('../database/dao/userDao');
 const messages = require('../util/message');
-
+const logger = require('../util/logger');
 
 
 const createNewUser = async (userObj) => {
     try {
-        var newUser = {
-            name: userObj.name,
-            email: userObj.email,
-            phone: null,
-            wallet: 0,
-            profilePicture: userObj.picture
-        };
-        var user = await userDao.createNewUser(newUser);
-        return {
-            message: messages.SuccessMessage.CreatedSuccessfully,
-            user: user
+        //check email already exsist
+        var userDetails = await userDao.getUserByEmail(userObj.email);
+        logger.info(JSON.stringify(userDetails));
+        if (userDetails) {
+            return {
+                message: messages.SuccessMessage.CreatedSuccessfully,
+                user: userDetails
+            }
+        } else {
+            var newUser = {
+                name: userObj.name,
+                email: userObj.email,
+                phone: null,
+                wallet: 0,
+                profilePicture: userObj.picture
+            };
+            var user = await userDao.createNewUser(newUser);
+            return {
+                message: messages.SuccessMessage.CreatedSuccessfully,
+                user: user
+            }
         }
+
     } catch (err) {
         throw err;
     }
 }
+
+
 
 const updateUser = async (userId, newuser) => {
     try {

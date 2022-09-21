@@ -1,6 +1,8 @@
 const userDao = require('../database/dao/userDao');
 const messages = require('../util/message');
 
+
+
 const createNewUser = async (userObj) => {
     try {
         var newUser = {
@@ -9,7 +11,6 @@ const createNewUser = async (userObj) => {
             phone: userObj.phone,
             wallet: userObj.wallet
         };
-
         var user = await userDao.createNewUser(newUser);
         return {
             message: messages.SuccessMessage.CreatedSuccessfully,

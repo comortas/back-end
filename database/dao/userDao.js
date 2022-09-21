@@ -46,10 +46,21 @@ const deleteuserById = async (id) => {
     }
 }
 
+
+const getuserByEmail = async(email) => {
+    try{
+        return await models.User.find(email).exec();
+    }
+    catch(error){
+        throw error;
+    }
+}
+
 module.exports = {
     createNewUser,
     updateUser,
     getuserList,
     getuserById,
-    deleteuserById
+    deleteuserById,
+    getuserByEmail
 };

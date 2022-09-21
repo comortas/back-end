@@ -12,15 +12,8 @@ module.exports = {
         InvalidToken : "Invalid Token"
     },
     SuccessMessage: {
-        CannedMessageCreatedSuccessfully : "Canned message created successfully",
-        CannedMessageUpdatedSuccessfully : "Canned message updated successfully",
-        CannedMessageDeletedSuccessfully : "Canned message deleted successfully",
-        ConsentCreatedSuccessfully : "Consent created successfully",
-        ConsentUpdatedSuccessfully : "Consent updated successfully",
-        ConsentAcknowledgementCreatedSuccessfully : "Acknowledgement saved",
-        ConsentAcknowledgementAlreadyAcknowledged : "Already Acknowledged",
-        NoConsentAcknowledgement : "No Consent for this organization",
-        EmailTemplateUpdatedSuccessfully : "Email template updated successfully",
-        SmsTemplateUpdatedSuccessfully: "SMS template updated successfully"
+        CreatedSuccessfully : "Created successfully",
+        UpdatedSuccessfully : "Updated successfully",
+        DeletedSuccessfully : "Deleted successfully"
     }
 }

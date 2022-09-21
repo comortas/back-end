@@ -2,7 +2,8 @@ const CLIENT_ID = process.env.CLIENT_ID || '200442052840-m0p7uol2elp8hhf2i2e8i22
 const messages = require('../../util/message');
 const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client(CLIENT_ID);
-const constants = require("../../util/constants")
+const constants = require("../../util/constants");
+const logger = require('../../util/logger');
 
 module.exports = function (req, res, next){
     let token = req.headers['authorization'] || req.headers['Authorization'];
@@ -22,6 +23,7 @@ module.exports = function (req, res, next){
                 });
             }
             else {
+                logger.debug(JSON.stringify(decoded));
                 req.decoded = decoded;
                 next();
             }

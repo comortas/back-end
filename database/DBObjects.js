@@ -1,10 +1,10 @@
 var models = {
-    ApplicationSetting : null,
-    CannedMessage : null,
     Community : null,
-    'images.files' : null,
+    Activity : null,
+    User : null
+    //'images.files' : null,
     //File : null,
-    UrlShortens : null
+    //UrlShortens : null
 };
 
 var fileAccess = {

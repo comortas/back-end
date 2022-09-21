@@ -1,8 +1,8 @@
 const { models } = require('../DBObjects');
 const _ = require('lodash');
 const {ObjectId} = require('mongoose').Types;
-const activityModel = require('../models/Activity.model');
-
+const logger = require('../../util/logger');
+const { json } = require('express');
 
 const createActivity = async (newActivity) => {
     try{
@@ -33,8 +33,8 @@ const getActivityById = async (id) => {
 
 const getActivityList = async () => {
     try{
-        return await models.Activity.find().exec();
-    }catch(error){
+        return await models.Activity.find();
+    }catch(error){  
         throw error;
     }
 }

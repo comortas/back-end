@@ -8,8 +8,9 @@ const createNewUser = async (userObj) => {
         var newUser = {
             name: userObj.name,
             email: userObj.email,
-            phone: userObj.phone,
-            wallet: userObj.wallet
+            phone: null,
+            wallet: 0,
+            profilePicture: userObj.picture
         };
         var user = await userDao.createNewUser(newUser);
         return {

@@ -30,7 +30,8 @@ const internals = module.exports = async (mdCommonModule) => {
   // });
 
   /* Application ID verification - Middleware*/
-  //router.use(require("../middlewares/auth/clientVerificationHandler"));
+
+  router.use(require("../middlewares/auth/clientVerificationHandler"));
   router.use(userRoute);
   router.use(communityRoute);
   router.use(activityRoute);

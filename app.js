@@ -19,7 +19,7 @@ const initApp = async () => {
     // appInsights.setup(await utility.GetSecret('INSTRUMENTATION-KEY'));
     // appInsights.start();
     //const mongoDBUrl = await utility.GetSecret('MONGODB-URI');
-     const mongoDBUrl = 'mongodb://cdxdpadbapimkt:Wx34HxlJCg2mMSHafw4qWxq33aBRj0hjzbI3860DljyIIT3m5ODo4BhzVQvW1UiXMiXGPDhYgKcN2FbNSCsSxQ==@cdxdpadbapimkt.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@cdxdpadbapimkt@';
+    const mongoDBUrl = 'mongodb://cdxdpadbapimkt:Wx34HxlJCg2mMSHafw4qWxq33aBRj0hjzbI3860DljyIIT3m5ODo4BhzVQvW1UiXMiXGPDhYgKcN2FbNSCsSxQ==@cdxdpadbapimkt.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@cdxdpadbapimkt@';
     app.set('port', port);
     app.enable('trust proxy');
 

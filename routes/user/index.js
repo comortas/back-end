@@ -8,7 +8,7 @@ module.exports = async () => {
 
     router.post('/user', async (req, res, next) => {
         try {
-            return res.json(await userService.createNewUser(req.body));
+            return res.json(await userService.createNewUser(req.decoded.payload));
         } catch (err) {
             next(err);
         }

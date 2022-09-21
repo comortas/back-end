@@ -61,7 +61,7 @@ const activitySchema = new Schema({
         enum: ['open','closed'],
         description: 'status of the activity'
     },
-    approvedVolunteers : [{
+    volunteers : [{
         type: Schema.Types.ObjectId,
         ref : 'User',
         required: true,

@@ -1,7 +1,6 @@
 const { models } = require('../DBObjects');
 const _ = require('lodash');
 const {ObjectId} = require('mongoose').Types;
-const communityModel = require('../models/Community.model');
 
 
 const createCommunity = async (newCommunity) => {

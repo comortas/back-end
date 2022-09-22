@@ -10,10 +10,10 @@ const volunteersSchema = new Schema({
         required: true,
         description: 'User id of the volunteers'
     },
-    resquestStatus: {
+    requestStatus: {
         type: String,
         required: true,
-        description: 'Request Approved or Denied'
+        description: 'Request Approved/Denied/Pending'
     }
 });
 

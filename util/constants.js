@@ -6,10 +6,10 @@ module.exports = {
         Provider: "provider",
         Admin: "admin",
         MedicalAssistant: "medicalAssistant",
-        SuperAdmin : "superAdmin",
-        Executive : "executive",
-        Director : "director",
-        System : "system"
+        SuperAdmin: "superAdmin",
+        Executive: "executive",
+        Director: "director",
+        System: "system"
     },
     Appointment: {
         ParticipantType: {
@@ -18,17 +18,17 @@ module.exports = {
             MedicalAssistant: 'medicalAssistant'
         }
     },
-    ApplicationSettings:{
-        PayoutInterval : 'payout_interval',
-        PayoutDelayDays : 'payout_delay_days',
-        PayoutAnchor : 'payout_anchor',
-        ConvenienceFee : 'convenience_fee',
-        CoPayFormula : 'co_pay_formula',
-        SelfPayFormula : 'self_pay_formula'
-    }, 
-    MDToken : { 
-        Name : 'MD_Telehealth_Token',
-        Expiration : 86400 // 24 hours
+    ApplicationSettings: {
+        PayoutInterval: 'payout_interval',
+        PayoutDelayDays: 'payout_delay_days',
+        PayoutAnchor: 'payout_anchor',
+        ConvenienceFee: 'convenience_fee',
+        CoPayFormula: 'co_pay_formula',
+        SelfPayFormula: 'self_pay_formula'
+    },
+    MDToken: {
+        Name: 'MD_Telehealth_Token',
+        Expiration: 86400 // 24 hours
     },
     HTTP_STATUS_CODE: {
         SUCCESS: 200,
@@ -36,5 +36,10 @@ module.exports = {
         UNAUTHORIZED: 401,
         FORBIDDEN: 403,
         INTERNAL_SERVER_ERROR: 500
+    },
+    ACTIVITY_REQUEST_STATUS: {
+        PENDING: 'Pending',
+        DENIED: 'Denied',
+        APPROVED: 'Approved'
     }
 };

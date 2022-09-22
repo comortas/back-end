@@ -46,11 +46,29 @@ const deleteActivityById = async (id) => {
         throw error;
     }
 }
+// const getVolunteerByActivityAndUserId = async (activityId, volunteerId) => {
+//     try {
+//         models.Activity.find({id:activityId,'volunteers.id':volunteerId}, function(err, foundLinks){
+//             if(err){
+//                 logger.error(err);
+//             }
+//             if(foundLinks){
+//                 logger.info("volunteer already exists!");
+//               } else {
+//                 logger.info("volunteer doesn't exist!");
+//               }
+              
+//         });
+//     } catch (error) {
+//         throw error;
+//     }
+// }
 
 module.exports = {
     createActivity,
     updateActivity,
     getActivityById,
     getActivityList,
-    deleteActivityById
+    deleteActivityById,
+    getVolunteerByActivityAndUserId
 };

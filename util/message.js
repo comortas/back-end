@@ -9,7 +9,8 @@ module.exports = {
         InvalidURL: "Invalid URL",
         MissingInput: "Missing Input",
         MissingToken : "Missing Token",
-        InvalidToken : "Invalid Token"
+        InvalidToken : "Invalid Token",
+        AlreadyApplied : "Activity Already Applied",
     },
     SuccessMessage: {
         CreatedSuccessfully : "Created successfully",

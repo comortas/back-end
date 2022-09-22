@@ -33,7 +33,7 @@ const getActivityById = async (id) => {
 
 const getActivityList = async () => {
     try {
-        return await models.Activity.find().sort('createdAt').exec();
+        return await models.Activity.find().exec();
     } catch (error) {
         throw error;
     }

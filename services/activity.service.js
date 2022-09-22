@@ -1,10 +1,13 @@
 const activityDao = require('../database/dao/activityDao');
 const messages = require('../util/message');
+const logger = require('../util/logger');
+const constant = require('../util/constants');
+
 
 const createNewActivity = async (activityObj) => {
     try {
         var newActivity = {
-            type : activityObj.type,
+            type: activityObj.type,
             name: activityObj.name,
             description: activityObj.description,
             createdBy: activityObj.createdBy,
@@ -12,10 +15,10 @@ const createNewActivity = async (activityObj) => {
             location: activityObj.location,
             latitude: activityObj.latitude,
             longitude: activityObj.longitude,
-            poc : activityObj.poc,
-            noOfVolunteers : activityObj.noOfVolunteers,
-            date : activityObj.date,
-            duration : activityObj.duration
+            poc: activityObj.poc,
+            noOfVolunteers: activityObj.noOfVolunteers,
+            date: activityObj.date,
+            duration: activityObj.duration
         };
 
         var activity = await activityDao.createActivity(newActivity);
@@ -68,11 +71,41 @@ const deleteActivityById = async (id) => {
     }
 }
 
+const applyRequest = async (applyObj) => {
+    try {
+        var activity = await getActivityById(applyObj.activityId);
+        //volunteer already exist
+        if (activity && activity.volunteers.length > 0
+            && activity.volunteers.find(element => {
+                if (element.volunteerId = applyObj.volunteerId) {
+                    return true
+                }
+                else { return false }
+            })) {
+            logger.info("volunteer already exist");
+            return {
+                message: messages.ErrorMessage.AlreadyApplied
+            }
+        }
+        //New request to join the activity
+        else {
+            var volunteer = {
+                volunteerId: applyObj.volunteerId,
+                requestStatus: constant.ACTIVITY_REQUEST_STATUS.PENDING
+            }
+            activity.volunteers.push(volunteer);
+            return await updateActivity(applyObj.activityId, activity);
+        }
+    } catch (err) {
+        throw err;
+    }
+}
 
 module.exports = {
     createNewActivity,
     updateActivity,
     getActivityList,
     getActivityById,
-    deleteActivityById
+    deleteActivityById,
+    applyRequest
 }

@@ -37,9 +37,9 @@ const createNewUser = async (userObj) => {
 
 
 
-const updateUser = async (userId, newuser) => {
+const updateUser = async (userId, newUser) => {
     try {
-        var updateResult = await userDao.updateUser(userId, newuser);
+        var updateResult = await userDao.updateUser(userId, newUser);
         if (updateResult.modifiedCount > 0) {
             return {
                 message: messages.SuccessMessage.UpdatedSuccessfully
@@ -50,25 +50,25 @@ const updateUser = async (userId, newuser) => {
     }
 }
 
-const getuserById = async (id) => {
+const getUserById = async (id) => {
     try {
-        return await userDao.getuserById(id);
+        return await userDao.getUserById(id);
     } catch (err) {
         throw err;
     }
 }
 
-const getuserList = async () => {
+const getUserList = async () => {
     try {
-        return await userDao.getuserList();
+        return await userDao.getUserList();
     } catch (err) {
         throw err;
     }
 }
 
-const deleteuserById = async (id) => {
+const deleteUserById = async (id) => {
     try {
-        await userDao.deleteuserById(id);
+        await userDao.deleteUserById(id);
         return {
             message: messages.SuccessMessage.DeletedSuccessfully
         }
@@ -77,9 +77,9 @@ const deleteuserById = async (id) => {
     }
 }
 
-const updateWallet = async(userid,wallet) => {
+const updateWallet = async(obj) => {
     try{
-       var updateResult = await userDao.newUpdatedWallet(userid, wallet);
+       var updateResult = await userDao.appendWallet(obj.volunteerId, obj.timeCredit);
        if (updateResult.modifiedCount > 0) {
            return {
                message: messages.SuccessMessage.UpdatedSuccessfully
@@ -94,8 +94,8 @@ const updateWallet = async(userid,wallet) => {
 module.exports = {
     createNewUser,
     updateUser,
-    getuserList,
-    getuserById,
-    deleteuserById,
+    getUserList,
+    getUserById,
+    deleteUserById,
     updateWallet
 }

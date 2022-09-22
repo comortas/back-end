@@ -18,7 +18,7 @@ const createNewActivity = async (activityObj) => {
             poc: activityObj.poc,
             noOfVolunteers: activityObj.noOfVolunteers,
             date: activityObj.date,
-            duration: activityObj.duration,            
+            duration: activityObj.duration,
             communityId: activityObj.communityId
         };
 
@@ -53,8 +53,11 @@ const getActivityById = async (id) => {
     }
 }
 
-const getActivityList = async () => {
+const getActivityList = async (communityId) => {
     try {
+        if (communityId) {
+            return await activityDao.getActivityListByCommunity(communityId);
+        }
         return await activityDao.getActivityList();
     } catch (err) {
         throw err;
@@ -114,7 +117,7 @@ const approveOrDenyRequest = async (obj) => {
                     return true;
                 }
                 else { return false }
-            });          
+            });
 
             //activity.volunteers.push(volunteer);
             //logger.info(activity);

@@ -22,6 +22,7 @@
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.7.2",
     "cors": "^2.8.5",
+    "chalk": "^4.1.2",
     "cryptr": "^6.0.3",
     "dateformat": "^5.0.3",
     "dotenv": "^16.0.2",
@@ -46,6 +47,9 @@
     "socket.io": "^4.5.1",
     "socket.io-redis": "^6.1.1",
     "twilio": "^3.77.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "winston": "^3.7.2",
+    "winston-application-insights-transport": "0.0.1",
+    "winston-daily-rotate-file": "^4.6.1"
   }
 }

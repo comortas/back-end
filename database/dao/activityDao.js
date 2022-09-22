@@ -61,9 +61,19 @@ const AddVolunteerById = async (activityId, newActivity) => {
     try {
         let activity = await models.Activity.updateOne(
             { _id: activityId },
-            { volunteers : newActivity.volunteers,
-              noOfVolunteers :  newActivity.volunteers.length
-            });
+            { volunteers : newActivity.volunteers });
+        return activity;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+const UpdateStatusById = async (activityId, newActivity) => {
+    try {
+        let activity = await models.Activity.updateOne(
+            { _id: activityId },
+            { volunteers : newActivity.volunteers });
         return activity;
     } catch (error) {
         throw error;

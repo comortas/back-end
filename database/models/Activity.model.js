@@ -70,6 +70,11 @@ const activitySchema = new Schema({
         required: true,
         description: 'point of contact for the activity'
     },
+    preferredGender: {
+        type: String,
+        required: true,
+        description: 'preferred gender for the activity'
+    },
     status: {
         type: String,
         required: true,

@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "Karma Theory backend API services",
   "main": "index.js",
-  "engines": {
-    "node": "v16.17.0",
-    "npm": "8.15.0"
-  },
   "scripts": {
     "start": "node index"
   },

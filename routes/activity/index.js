@@ -32,7 +32,7 @@ module.exports = async () => {
 
     router.get('/activity/list', async (req, res, next) => {
         try {
-            return res.json(await activityService.getActivityList());
+            return res.json(await activityService.getActivityList(req.query.communityId));
         } catch (err) {
             next(err);
         }
@@ -41,15 +41,6 @@ module.exports = async () => {
     router.delete('/activity/:id', async (req, res, next) => {
         try {
             return res.json(await activityService.deleteActivityById(req.params.id));
-        } catch (err) {
-            next(err);
-        }
-    });
-
-
-    router.get('/activity/:id/optin', async (req, res, next) => {
-        try {
-            return res.json(await activityService.getActivityList());
         } catch (err) {
             next(err);
         }

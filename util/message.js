@@ -11,6 +11,7 @@ module.exports = {
         MissingToken : "Missing Token",
         InvalidToken : "Invalid Token",
         AlreadyApplied : "Activity Already Applied",
+        DataNotFound : "Data Not Found"
     },
     SuccessMessage: {
         CreatedSuccessfully : "Created successfully",

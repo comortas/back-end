@@ -18,7 +18,8 @@ const createNewActivity = async (activityObj) => {
             poc: activityObj.poc,
             noOfVolunteers: activityObj.noOfVolunteers,
             date: activityObj.date,
-            duration: activityObj.duration
+            duration: activityObj.duration,            
+            communityId: activityObj.communityId
         };
 
         var activity = await activityDao.createActivity(newActivity);
@@ -82,7 +83,7 @@ const applyRequest = async (applyObj) => {
                 }
                 else { return false }
             })) {
-            logger.info("volunteer already exist");
+            //logger.info("volunteer already exist");
             return {
                 message: messages.ErrorMessage.AlreadyApplied
             }
@@ -101,11 +102,41 @@ const applyRequest = async (applyObj) => {
     }
 }
 
+const approveOrDenyRequest = async (obj) => {
+    try {
+        var activity = await getActivityById(obj.activityId);
+
+        if (activity && activity.volunteers.length > 0) {
+
+            activity.volunteers.find(element => {
+                if (element.volunteerId = obj.volunteerId) {
+                    element.requestStatus = obj.reqStatus;
+                    return true;
+                }
+                else { return false }
+            });          
+
+            //activity.volunteers.push(volunteer);
+            //logger.info(activity);
+            return await updateActivity(obj.activityId, activity);
+        }
+        //New request to join the activity
+        else {
+            return {
+                message: messages.ErrorMessage.DataNotFound
+            }
+        }
+    } catch (err) {
+        throw err;
+    }
+}
+
 module.exports = {
     createNewActivity,
     updateActivity,
     getActivityList,
     getActivityById,
     deleteActivityById,
-    applyRequest
+    applyRequest,
+    approveOrDenyRequest
 }

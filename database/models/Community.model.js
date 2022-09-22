@@ -34,6 +34,11 @@ const communitySchema = new Schema({
         required: true,
         description: 'Latitude of the Community'
     },
+    poster: {
+        type: String,
+        required: false,
+        description: 'Poster Url of the Community'
+    },
     createdBy: {
         type: String,
         required: true,

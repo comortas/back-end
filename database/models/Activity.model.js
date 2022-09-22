@@ -75,6 +75,11 @@ const activitySchema = new Schema({
         enum: ['open', 'closed'],
         description: 'status of the activity'
     },
+    poster: {
+        type: String,
+        required: false,
+        description: 'Poster Url of the activity'
+    },
     volunteers: [volunteersSchema],
     createdBy: {
         type: String,

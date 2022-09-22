@@ -1,17 +1,14 @@
 'use strict';
 const express = require('express');
-const initFileRoute = require('./file');
 const initCommunity = require('./community');
 const initActivity = require('./activity');
 const initUser = require('./user');
 
 const internals = module.exports = async (io) => {
 
-  const fileRoute = await initFileRoute();
   const communityRoute = await initCommunity();
   const activityRoute = await initActivity(io);
   const userRoute = await initUser();
-
   const router = new express.Router();
 
   router.get('/ping', async (req, res) => res.json({ message: 'pong' }));
@@ -33,6 +30,5 @@ const internals = module.exports = async (io) => {
   router.use(userRoute);
   router.use(communityRoute);
   router.use(activityRoute);
-  router.use(fileRoute);
   return router;
 };

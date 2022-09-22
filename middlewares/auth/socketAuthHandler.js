@@ -1,4 +1,3 @@
-const jwt = require("jsonwebtoken");
 const Joi = require('joi');
 const schemas = require('../reqValidator/schemas/reqSchemas');
 //const utility = require('../../util/utility');

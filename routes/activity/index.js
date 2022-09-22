@@ -62,6 +62,13 @@ module.exports = async () => {
             next(err);
         }
     });
+    router.post('/activity/approveordeny', async (req, res, next) => {
+        try {
+            return res.json(await activityService.approveOrDenyRequest(req.body));
+        } catch (err) {
+            next(err);
+        }
+    });
   
 
     return router;

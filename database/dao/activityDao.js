@@ -69,6 +69,5 @@ module.exports = {
     updateActivity,
     getActivityById,
     getActivityList,
-    deleteActivityById,
-    getVolunteerByActivityAndUserId
+    deleteActivityById
 };

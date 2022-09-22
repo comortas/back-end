@@ -22,9 +22,9 @@ module.exports = async () => {
         }
     });
 
-    router.get('/user', async (req, res, next) => {
+    router.get('/user/:id', async (req, res, next) => {
         try {
-            return res.json(await userService.getuserById(req.query.id));
+            return res.json(await userService.getUserById(req.params.id));
         } catch (err) {
             next(err);
         }
@@ -32,7 +32,7 @@ module.exports = async () => {
 
     router.get('/user/list', async (req, res, next) => {
         try {
-            return res.json(await userService.getuserList());
+            return res.json(await userService.getUserList());
         } catch (err) {
             next(err);
         }
@@ -40,11 +40,19 @@ module.exports = async () => {
 
     router.delete('/user/:id', async (req, res, next) => {
         try {
-            return res.json(await userService.deleteuserById(req.params.id));
+            return res.json(await userService.deleteUserById(req.params.id));
         } catch (err) {
             next(err);
         }
     });
 
+    router.post('/user/acknowledge', async(req,res,next) =>{
+        try{
+            return res.json(await userService.updateWallet(req.body));
+        }catch (err) {
+            next(err);
+        }        
+    });
+    
     return router;
 };

@@ -38,6 +38,13 @@ const getActivityList = async () => {
         throw error;
     }
 }
+const getActivityListByCommunity = async (communityId) => {
+    try {
+        return await models.Activity.find({ communityId: communityId }).exec();
+    } catch (error) {
+        throw error;
+    }
+}
 
 const deleteActivityById = async (id) => {
     try {
@@ -57,7 +64,7 @@ const deleteActivityById = async (id) => {
 //               } else {
 //                 logger.info("volunteer doesn't exist!");
 //               }
-              
+
 //         });
 //     } catch (error) {
 //         throw error;
@@ -69,5 +76,6 @@ module.exports = {
     updateActivity,
     getActivityById,
     getActivityList,
-    deleteActivityById
+    deleteActivityById,
+    getActivityListByCommunity
 };

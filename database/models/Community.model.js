@@ -16,7 +16,7 @@ const communitySchema = new Schema({
     },
     category: {
         type: String,
-        required: true,
+        required: false,
         description: 'category of the Community'
     },
     location: {

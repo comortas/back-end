@@ -13,7 +13,8 @@ const volunteersSchema = new Schema({
     requestStatus: {
         type: String,
         required: true,
-        description: 'Request Approved/Denied/Pending'
+        enum: ['open', 'request-approved', 'request-denied', 'credit-approved', 'credit-denied'],
+        description: 'status of volunteer contribution'
     }
 });
 
@@ -89,7 +90,7 @@ const activitySchema = new Schema({
     communityId: {
         type: Schema.Types.ObjectId,
         ref: 'Community',
-        required: true,
+        required: false,
         description: 'Community id'
     }
 },

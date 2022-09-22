@@ -33,7 +33,10 @@ const getActivityById = async (id) => {
 
 const getActivityList = async () => {
     try {
-        return await models.Activity.find().exec();
+        return await models.Activity.find().populate({
+            path: 'volunteers',
+            populate: { path: 'volunteerId' }
+          });
     } catch (error) {
         throw error;
     }
@@ -53,6 +56,22 @@ const deleteActivityById = async (id) => {
         throw error;
     }
 }
+
+const AddVolunteerById = async (activityId, newActivity) => {
+    try {
+        let activity = await models.Activity.updateOne(
+            { _id: activityId },
+            { volunteers : newActivity.volunteers,
+              noOfVolunteers :  newActivity.volunteers.length
+            });
+        return activity;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+
 // const getVolunteerByActivityAndUserId = async (activityId, volunteerId) => {
 //     try {
 //         models.Activity.find({id:activityId,'volunteers.id':volunteerId}, function(err, foundLinks){
@@ -74,6 +93,7 @@ const deleteActivityById = async (id) => {
 module.exports = {
     createActivity,
     updateActivity,
+    AddVolunteerById,
     getActivityById,
     getActivityList,
     deleteActivityById,

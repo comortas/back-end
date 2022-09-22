@@ -5,12 +5,13 @@ module.exports = {
         MissingInput: "Missing Input",
         MissingToken : "Missing Token",
         InvalidToken : "Invalid Token",
-        AlreadyApplied : "Activity Already Applied",
+        AlreadyApplied : "This user already applied for this event",
         DataNotFound : "Data Not Found"
     },
     SuccessMessage: {
         CreatedSuccessfully : "Created successfully",
         UpdatedSuccessfully : "Updated successfully",
-        DeletedSuccessfully : "Deleted successfully"
+        DeletedSuccessfully : "Deleted successfully",
+        AppliedToJoinEventSuccessfully : "Application to join event is submitted successfully",
     }
 }

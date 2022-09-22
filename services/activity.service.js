@@ -81,7 +81,7 @@ const applyRequest = async (applyObj) => {
         //volunteer already exist
         if (activity && activity.volunteers.length > 0
             && activity.volunteers.find(element => {
-                if (element.volunteerId = applyObj.volunteerId) {
+                if (element.volunteerId == applyObj.volunteerId) {
                     return true
                 }
                 else { return false }
@@ -97,8 +97,14 @@ const applyRequest = async (applyObj) => {
                 volunteerId: applyObj.volunteerId,
                 requestStatus: constant.ACTIVITY_REQUEST_STATUS.PENDING
             }
+            activity.id = applyObj.activityId;
             activity.volunteers.push(volunteer);
-            return await updateActivity(applyObj.activityId, activity);
+            var updateResult = await activityDao.AddVolunteerById(applyObj.activityId, activity);
+            if (updateResult.modifiedCount > 0) {
+                return {
+                    message: messages.SuccessMessage.AppliedToJoinEventSuccessfully
+                }
+            }
         }
     } catch (err) {
         throw err;
@@ -113,7 +119,7 @@ const approveOrDenyRequest = async (obj) => {
 
             activity.volunteers.find(element => {
                 if (element.volunteerId = obj.volunteerId) {
-                    element.requestStatus = obj.reqStatus;
+                    element.requestStatus = obj.status;
                     return true;
                 }
                 else { return false }

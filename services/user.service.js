@@ -1,6 +1,8 @@
 const userDao = require('../database/dao/userDao');
 const messages = require('../util/message');
 const logger = require('../util/logger');
+const { find } = require('lodash');
+const user = require('../routes/user');
 
 
 const createNewUser = async (userObj) => {
@@ -75,11 +77,25 @@ const deleteuserById = async (id) => {
     }
 }
 
+const updateWallet = async(userid,wallet) => {
+    try{
+       var updateResult = await userDao.newUpdatedWallet(userid, wallet);
+       if (updateResult.modifiedCount > 0) {
+           return {
+               message: messages.SuccessMessage.UpdatedSuccessfully
+           }
+        }
+       
+    }catch (err) {
+        throw err;
+    }
+}
 
 module.exports = {
     createNewUser,
     updateUser,
     getuserList,
     getuserById,
-    deleteuserById
+    deleteuserById,
+    updateWallet
 }

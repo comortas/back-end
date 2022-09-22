@@ -46,5 +46,13 @@ module.exports = async () => {
         }
     });
 
+    router.put('/requestacknowledge/:id', async(req,res,next) =>{
+        try{
+            return res.json(await userService.updateWallet(req.params.id,req.body.wallet));
+        }catch (err) {
+            next(err);
+        }        
+    });
+    
     return router;
 };

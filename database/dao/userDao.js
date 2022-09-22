@@ -56,11 +56,34 @@ const getUserByEmail = async(email) => {
     }
 }
 
+const updateWallet = async(id) => {
+    try{
+      return await models.User.findById(id).exec();
+    }
+    catch(error){
+        throw error;
+    }
+}
+
+const newUpdatedWallet = async (userid, wallet1) => {
+    try{
+        let user = await models.User.updateOne(
+             { _id:userid },
+             { $inc: { wallet: wallet1 }} 
+          );
+        return user;
+        }catch(error){
+        throw error;
+    }
+}
+
 module.exports = {
     createNewUser,
     updateUser,
     getuserList,
     getuserById,
     deleteuserById,
-    getUserByEmail
+    getUserByEmail,
+    updateWallet,
+    newUpdatedWallet
 };

@@ -6,7 +6,7 @@ mongoose.Promise = Promise;
 const volunteersSchema = new Schema({
     volunteerId: {
         type: Schema.Types.ObjectId,
-        ref : 'User',
+        ref: 'User',
         required: true,
         description: 'User id of the volunteers'
     },
@@ -21,7 +21,7 @@ const activitySchema = new Schema({
     type: {
         type: String,
         required: true,
-        enum: ['event','help'],
+        enum: ['event', 'help'],
         description: 'Type of the activity'
     },
     name: {
@@ -59,7 +59,7 @@ const activitySchema = new Schema({
         required: true,
         description: 'date of the activity'
     },
-    noOfVolunteers:{
+    noOfVolunteers: {
         type: Number,
         required: true,
         description: 'duration for the activity'
@@ -72,18 +72,24 @@ const activitySchema = new Schema({
     status: {
         type: String,
         required: true,
-        enum: ['open','closed'],
+        enum: ['open', 'closed'],
         description: 'status of the activity'
     },
-    volunteers : [volunteersSchema],
+    volunteers: [volunteersSchema],
     createdBy: {
         type: String,
         required: true,
         description: 'User who created the activity'
+    },
+    communityId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Community',
+        required: true,
+        description: 'Community id'
     }
 },
     {
         timestamps: true
-});
+    });
 
-module.exports = { name : 'Activity', schema : activitySchema };
+module.exports = { name: 'Activity', schema: activitySchema };

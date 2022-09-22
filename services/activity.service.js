@@ -18,7 +18,8 @@ const createNewActivity = async (activityObj) => {
             poc: activityObj.poc,
             noOfVolunteers: activityObj.noOfVolunteers,
             date: activityObj.date,
-            duration: activityObj.duration
+            duration: activityObj.duration,            
+            communityId: activityObj.communityId
         };
 
         var activity = await activityDao.createActivity(newActivity);

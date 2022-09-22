@@ -50,7 +50,7 @@ const communitySchema = new Schema({
         ref: 'User',
         required: true,
         description: 'Admin of the Community'
-    }
+    },
 },
     {
         timestamps: true

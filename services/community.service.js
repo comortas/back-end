@@ -11,7 +11,7 @@ const createNewCommunity = async (communityObj) => {
             location: communityObj.location,
             latitude: communityObj.latitude,
             longitude: communityObj.longitude,
-            admin : communityObj.admin
+            admin: communityObj.admin
         };
 
         var community = await communityDao.createCommunity(newCommunity);

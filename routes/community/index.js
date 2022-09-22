@@ -32,7 +32,7 @@ module.exports = async () => {
 
     router.get('/community/list', async (req, res, next) => {
         try {
-            return res.json(await communityService.getCommunityList());
+            return res.json(await communityService.getCommunityList(req.query.userId));
         } catch (err) {
             next(err);
         }

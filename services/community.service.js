@@ -45,8 +45,11 @@ const getCommunityById = async (id) => {
     }
 }
 
-const getCommunityList = async () => {
+const getCommunityList = async (userId) => {
     try {
+        if (userId) {
+            return await communityDao.getCommunityListByUserId(userId);
+        }
         return await communityDao.getCommunityList();
     } catch (err) {
         throw err;

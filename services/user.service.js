@@ -1,8 +1,9 @@
 const userDao = require('../database/dao/userDao');
 const messages = require('../util/message');
 const logger = require('../util/logger');
-const { find } = require('lodash');
 const user = require('../routes/user');
+const constant = require('../util/constants');
+const activityDao = require('../database/dao/activityDao');
 
 
 const createNewUser = async (userObj) => {
@@ -77,16 +78,34 @@ const deleteUserById = async (id) => {
     }
 }
 
-const updateWallet = async(obj) => {
-    try{
-       var updateResult = await userDao.appendWallet(obj.volunteerId, obj.timeCredit);
-       if (updateResult.modifiedCount > 0) {
-           return {
-               message: messages.SuccessMessage.UpdatedSuccessfully
-           }
+const updateWallet = async (obj) => {
+    try {
+        //update activity obj
+        var activity = await activityDao.getActivityById(obj.activityId);
+        activity.volunteers.find(element => {
+            if (element.volunteerId == obj.volunteerId) {
+                element.requestStatus = obj.reqStatus;
+                return true
+            }
+            else { return false }
+        });
+        await activityDao.updateActivity(obj.activityId, activity);
+
+        //update user obj
+        if (obj.reqStatus == constant.ACTIVITY_REQUEST_STATUS.CREDIT_APPROVED) {
+            var updateResult = await userDao.appendWallet(obj.volunteerId, obj.timeCredit);
+            if (updateResult.modifiedCount > 0) {
+                return {
+                    message: messages.SuccessMessage.CreditApproved
+                }
+            }
+        } else if (obj.reqStatus == constant.ACTIVITY_REQUEST_STATUS.CREDIT_DENIED) {
+            return {
+                message: messages.SuccessMessage.CreditDenied
+            }
         }
-       
-    }catch (err) {
+
+    } catch (err) {
         throw err;
     }
 }

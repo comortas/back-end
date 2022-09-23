@@ -9,8 +9,12 @@ module.exports = {
         INTERNAL_SERVER_ERROR: 500
     },
     ACTIVITY_REQUEST_STATUS: {
-        PENDING: 'Pending',
-        DENIED: 'Denied',
-        APPROVED: 'Approved'
+        OPEN: 'open',
+        REQUEST_DENIED: 'request-denied',
+        REQUEST_APPROVED: 'request-approved',
+        CREDIT_DENIED: 'credit-denied',
+        CREDIT_APPROVED: 'credit-approved'
     }
+
+    //'open', 'request-approved', 'request-denied', 'credit-approved', 'credit-denied'
 };

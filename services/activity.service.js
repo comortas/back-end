@@ -96,11 +96,11 @@ const applyRequest = async (applyObj) => {
         else {
             var volunteer = {
                 volunteerId: applyObj.volunteerId,
-                requestStatus: constant.ACTIVITY_REQUEST_STATUS.PENDING
+                requestStatus: constant.ACTIVITY_REQUEST_STATUS.OPEN
             }
             activity.id = applyObj.activityId;
             activity.volunteers.push(volunteer);
-            var updateResult = await activityDao.AddVolunteerById(applyObj.activityId, activity);
+            var updateResult = await activityDao.addVolunteerById(applyObj.activityId, activity);
             if (updateResult.modifiedCount > 0) {
                 return {
                     message: messages.SuccessMessage.AppliedToJoinEventSuccessfully
@@ -119,15 +119,12 @@ const approveOrDenyRequest = async (obj) => {
         if (activity && activity.volunteers.length > 0) {
 
             activity.volunteers.find(element => {
-                if (element.volunteerId = obj.volunteerId) {
-                    element.requestStatus = obj.status;
+                if (element.volunteerId == obj.volunteerId) {
+                    element.requestStatus = obj.reqStatus;
                     return true;
                 }
                 else { return false }
             });
-
-            //activity.volunteers.push(volunteer);
-            //logger.info(activity);
             return await updateActivity(obj.activityId, activity);
         }
         //New request to join the activity

@@ -13,5 +13,7 @@ module.exports = {
         UpdatedSuccessfully : "Updated successfully",
         DeletedSuccessfully : "Deleted successfully",
         AppliedToJoinEventSuccessfully : "Application to join event is submitted successfully",
+        CreditApproved : "Credit Approved",
+        CreditDenied : "Credit Denied"
     }
 }

@@ -36,7 +36,7 @@ const getActivityList = async () => {
         return await models.Activity.find().populate({
             path: 'volunteers',
             populate: { path: 'volunteerId' }
-          });
+        });
     } catch (error) {
         throw error;
     }
@@ -57,11 +57,11 @@ const deleteActivityById = async (id) => {
     }
 }
 
-const AddVolunteerById = async (activityId, newActivity) => {
+const addVolunteerById = async (activityId, newActivity) => {
     try {
         let activity = await models.Activity.updateOne(
             { _id: activityId },
-            { volunteers : newActivity.volunteers });
+            { volunteers: newActivity.volunteers });
         return activity;
     } catch (error) {
         throw error;
@@ -69,16 +69,21 @@ const AddVolunteerById = async (activityId, newActivity) => {
 }
 
 
-const UpdateStatusById = async (activityId, newActivity) => {
-    try {
-        let activity = await models.Activity.updateOne(
-            { _id: activityId },
-            { volunteers : newActivity.volunteers });
-        return activity;
-    } catch (error) {
-        throw error;
-    }
-}
+// const updateStatusByActivityAndVolunteerId = async (activityObj) => {
+//     try {
+//         // let activity = await models.Activity.updateOne(
+//         //     { _id: activityObj.activityId,"volunteers.volunteerId":activityObj.volunteerId },
+//         //     { "volunteers.requestStatus" : activityObj.requestStatus });
+//             let activity = await models.Activity.updateOne(
+//                 { _id: activityObj.activityId }, 
+//                 { $set: { "volunteers.$[elem].requestStatus": activityObj.requestStatus } },
+//                 { arrayFilters: [ { 'elem.volunteerId': activityObj.volunteerId } ] }
+//               )   
+//         return activity;
+//     } catch (error) {
+//         throw error;
+//     }
+// }
 
 
 
@@ -103,9 +108,10 @@ const UpdateStatusById = async (activityId, newActivity) => {
 module.exports = {
     createActivity,
     updateActivity,
-    AddVolunteerById,
+    addVolunteerById,
     getActivityById,
     getActivityList,
     deleteActivityById,
     getActivityListByCommunity
+
 };
